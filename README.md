@@ -1,1 +1,691 @@
-# rajtechblog.github.io
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI PULSE - Your Guide to AI Tools & Tech</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            background: #000;
+            color: #fff;
+        }
+
+        .header {
+            background: #000;
+            border-bottom: 1px solid #333;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: 900;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: -1px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            color: #ccc;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: #ff6b35;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 72px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            color: #000;
+            line-height: 0.9;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: #000;
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .featured {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 40px;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .featured-main {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .featured-main:hover {
+            transform: scale(1.02);
+        }
+
+        .featured-main img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .featured-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            padding: 40px;
+            color: white;
+        }
+
+        .featured-category {
+            background: #ff6b35;
+            color: #000;
+            padding: 6px 12px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .featured-title {
+            font-size: 32px;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 10px;
+        }
+
+        .featured-excerpt {
+            font-size: 16px;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+
+        .featured-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .sidebar-article {
+            background: #111;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .sidebar-article:hover {
+            background: #222;
+        }
+
+        .sidebar-article img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+        }
+
+        .sidebar-content {
+            padding: 20px;
+        }
+
+        .sidebar-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        .sidebar-excerpt {
+            font-size: 14px;
+            color: #ccc;
+            line-height: 1.4;
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .article-card {
+            background: #111;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .article-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .article-content {
+            padding: 25px;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .article-date {
+            font-size: 12px;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .article-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #fff;
+            line-height: 1.2;
+        }
+
+        .article-excerpt {
+            color: #ccc;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        .trending {
+            background: #111;
+            padding: 60px 0;
+            border-radius: 20px;
+            margin: 60px 0;
+        }
+
+        .trending-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .trending-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            background: #222;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .trending-item:hover {
+            background: #333;
+        }
+
+        .trending-number {
+            font-size: 32px;
+            font-weight: 900;
+            color: #ff6b35;
+            width: 60px;
+        }
+
+        .trending-content h4 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: #fff;
+        }
+
+        .trending-content p {
+            font-size: 14px;
+            color: #ccc;
+        }
+
+        .footer {
+            background: #000;
+            border-top: 1px solid #333;
+            padding: 60px 0 30px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: #ff6b35;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            color: #999;
+            font-size: 14px;
+        }
+
+        .search-button {
+            background: none;
+            border: 1px solid #333;
+            color: #ccc;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .search-button:hover {
+            border-color: #ff6b35;
+            color: #ff6b35;
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 48px;
+            }
+            
+            .featured-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 36px;
+            }
+        }
+
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="nav-container">
+            <a href="#" class="logo">AI PULSE</a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#">ChatGPT</a></li>
+                    <li><a href="#">AI Tools</a></li>
+                    <li><a href="#">Tech Tips</a></li>
+                    <li><a href="#">Reviews</a></li>
+                    <li><a href="#">Tutorials</a></li>
+                </ul>
+            </nav>
+            <button class="search-button">Search</button>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>AI REVOLUTION<br>STARTS HERE</h1>
+        <p>Master AI tools, discover the latest tech, and stay ahead of the curve with expert guides and reviews.</p>
+    </section>
+
+    <div class="container">
+        <section class="featured">
+            <h2 class="section-title">Featured Stories</h2>
+            <div class="featured-grid">
+                <article class="featured-main">
+                    <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=400&fit=crop" alt="AI Technology">
+                    <div class="featured-overlay">
+                        <span class="featured-category">Featured</span>
+                        <h3 class="featured-title">Best ChatGPT Prompts for 2025: Complete Guide</h3>
+                        <p class="featured-excerpt">Discover 50+ proven ChatGPT prompts that will transform your productivity and creativity. From writing to coding, these prompts deliver results.</p>
+                    </div>
+                </article>
+                
+                <div class="featured-sidebar">
+                    <article class="sidebar-article">
+                        <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=400&h=140&fit=crop" alt="AI Tools">
+                        <div class="sidebar-content">
+                            <h4 class="sidebar-title">Top 10 Free AI Tools Every Student Needs</h4>
+                            <p class="sidebar-excerpt">Boost your academic performance with these powerful AI assistants.</p>
+                        </div>
+                    </article>
+                    
+                    <article class="sidebar-article">
+                        <img src="https://images.unsplash.com/photo-1587620962725-abab7fe55159?w=400&h=140&fit=crop" alt="AI vs Human">
+                        <div class="sidebar-content">
+                            <h4 class="sidebar-title">MidJourney vs DALL-E vs Stable Diffusion</h4>
+                            <p class="sidebar-excerpt">Complete comparison of the best AI art generators in 2025.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="trending">
+            <div class="container">
+                <h2 class="section-title">Trending Now</h2>
+                <div class="trending-list">
+                    <div class="trending-item">
+                        <div class="trending-number">01</div>
+                        <div class="trending-content">
+                            <h4>How to Use AI for Homework</h4>
+                            <p>Ethical ways students can leverage AI</p>
+                        </div>
+                    </div>
+                    
+                    <div class="trending-item">
+                        <div class="trending-number">02</div>
+                        <div class="trending-content">
+                            <h4>Best AI Chrome Extensions</h4>
+                            <p>Supercharge your browser with AI power</p>
+                        </div>
+                    </div>
+                    
+                    <div class="trending-item">
+                        <div class="trending-number">03</div>
+                        <div class="trending-content">
+                            <h4>Canva + AI Design Tools</h4>
+                            <p>Create stunning designs in minutes</p>
+                        </div>
+                    </div>
+                    
+                    <div class="trending-item">
+                        <div class="trending-number">04</div>
+                        <div class="trending-content">
+                            <h4>ChatGPT Alternatives 2025</h4>
+                            <p>Best AI chatbots you should try</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="articles">
+            <h2 class="section-title">Latest Articles</h2>
+            <div class="articles-grid">
+                <article class="article-card">
+                    <img src="https://images.unsplash.com/photo-1655720828018-edd2daec9349?w=400&h=220&fit=crop" class="article-image" alt="AI Tools">
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span class="featured-category">Guide</span>
+                            <span class="article-date">July 19, 2025</span>
+                        </div>
+                        <h3 class="article-title">Free vs Paid AI Tools: What's Worth It?</h3>
+                        <p class="article-excerpt">Complete breakdown of which AI tools deserve your money and which free alternatives work just as well.</p>
+                    </div>
+                </article>
+
+                <article class="article-card">
+                    <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400&h=220&fit=crop" class="article-image" alt="AI Coding">
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span class="featured-category">Tutorial</span>
+                            <span class="article-date">July 18, 2025</span>
+                        </div>
+                        <h3 class="article-title">AI Tools for Coding: Beginner's Guide</h3>
+                        <p class="article-excerpt">Learn how GitHub Copilot, ChatGPT, and other AI tools can 10x your coding productivity.</p>
+                    </div>
+                </article>
+
+                <article class="article-card">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=220&fit=crop" class="article-image" alt="AI Scams">
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span class="featured-category">Warning</span>
+                            <span class="article-date">July 17, 2025</span>
+                        </div>
+                        <h3 class="article-title">AI Scams to Avoid in 2025</h3>
+                        <p class="article-excerpt">Protect yourself from fake AI tools, deepfake scams, and other AI-related fraud targeting users.</p>
+                    </div>
+                </article>
+
+                <article class="article-card">
+                    <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400&h=220&fit=crop" class="article-image" alt="Notion AI">
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span class="featured-category">Tutorial</span>
+                            <span class="article-date">July 16, 2025</span>
+                        </div>
+                        <h3 class="article-title">How to Master Notion AI</h3>
+                        <p class="article-excerpt">Step-by-step guide to using Notion AI for note-taking, project management, and productivity.</p>
+                    </div>
+                </article>
+
+                <article class="article-card">
+                    <img src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=400&h=220&fit=crop" class="article-image" alt="AI Video">
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span class="featured-category">Guide</span>
+                            <span class="article-date">July 15, 2025</span>
+                        </div>
+                        <h3 class="article-title">How to Make AI YouTube Videos</h3>
+                        <p class="article-excerpt">Create viral YouTube content using AI tools for scripting, voiceovers, and video editing.</p>
+                    </div>
+                </article>
+
+                <article class="article-card">
+                    <img src="https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=400&h=220&fit=crop" class="article-image" alt="AI Resume">
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span class="featured-category">Career</span>
+                            <span class="article-date">July 14, 2025</span>
+                        </div>
+                        <h3 class="article-title">AI for Resume Writing: Complete Guide</h3>
+                        <p class="article-excerpt">Use AI to craft compelling resumes that pass ATS systems and impress recruiters.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About AI PULSE</h3>
+                    <ul>
+                        <li><a href="#">Our Mission</a></li>
+                        <li><a href="#">AI Ethics</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Write for Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>AI Content</h3>
+                    <ul>
+                        <li><a href="#">ChatGPT Guides</a></li>
+                        <li><a href="#">AI Tool Reviews</a></li>
+                        <li><a href="#">Tech Tutorials</a></li>
+                        <li><a href="#">AI News</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Free AI Tools List</a></li>
+                        <li><a href="#">AI Prompt Library</a></li>
+                        <li><a href="#">Video Tutorials</a></li>
+                        <li><a href="#">AI Glossary</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Copyright</a></li>
+                        <li><a href="#">Advertising</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 AI PULSE Blog. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Add interactive features
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Add click handlers for article cards
+            document.querySelectorAll('.article-card, .sidebar-article, .featured-main, .trending-item').forEach(card => {
+                card.addEventListener('click', function() {
+                    // Simulate article navigation
+                    console.log('Navigate to article:', this.querySelector('h3, h4').textContent);
+                });
+            });
+
+            // Search functionality
+            document.querySelector('.search-button').addEventListener('click', function() {
+                const query = prompt('Search for articles:');
+                if (query) {
+                    console.log('Search query:', query);
+                    // Implement search functionality here
+                }
+            });
+
+            // Add pulse animation to logo on hover
+            const logo = document.querySelector('.logo');
+            logo.addEventListener('mouseenter', function() {
+                this.classList.add('pulse-animation');
+            });
+            
+            logo.addEventListener('animationend', function() {
+                this.classList.remove('pulse-animation');
+            });
+
+            // Lazy loading simulation for images
+            const images = document.querySelectorAll('img');
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.style.opacity = '0';
+                        img.style.transition = 'opacity 0.5s';
+                        setTimeout(() => {
+                            img.style.opacity = '1';
+                        }, 100);
+                        observer.unobserve(img);
+                    }
+                });
+            });
+
+            images.forEach(img => imageObserver.observe(img));
+        });
+    </script>
+</body>
+</html>
